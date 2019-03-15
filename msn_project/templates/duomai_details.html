@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+#form1{
+    margin:10 5;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>多麦佣金明细报表</title>
+</head>
+<body>
+<div>
+    <form id="form1" method="post" action="/duomai/upload" enctype="multipart/form-data">
+        <input id="File" type="file" name="duomai_file"/>  <!--后台代码中获取文件是通过form的name来标识的-->
+        <input type="submit" value="提交"/>
+    </form>
+    <table id="duomai_details" style="width:100%">
+    {% if result %}
+    <tr>
+        <th>会员ID</th>
+        <th>网站ID</th>
+        <th>活动ID</th>
+        <th>订单时间</th>
+        <th>反馈标签</th>
+        <th>订单数量</th>
+        <th>意向订单数量</th>
+        <th>意向订单金额</th>
+        <th>意向佣金</th>
+        <th>确认订单数量</th>
+        <th>确认订单金额</th>
+        <th>确认佣金</th>
+        <th>结算状态</th>
+        <th>确认时间</th>
+    </tr>
+    {% for row in result %}
+    <tr>
+        <td> {{ row.vip_id }} </td>
+        <td> {{ row.website_id }}</td>
+        <td> {{ row.activity_id }}</td>
+        <td> {{ row.order_time }}</td>
+        <td> {{ row.feedback_label }}</td>
+        <td> {{ row.order_number }}</td>
+        <td> {{ row.intention_order_number }}</td>
+        <td> {{ row.intention_order_amount }}</td>
+        <td> {{ row.intention_commission }}</td>
+        <td> {{ row.confirmed_order_number }}</td>
+        <td> {{ row.confirmed_order_amount }}</td>
+        <td> {{ row.confirmed_commission }}</td>
+        <td> {{ row.performance_status }}</td>
+        <td> {{ row.performance_confirmed_time }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+</div>
+</body>
+</html>

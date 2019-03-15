@@ -1,0 +1,54 @@
+<!--{% from "macros.html" import nav_link with context %}-->
+{% extends  "layout.html" %}       # 继承base.html文件
+{% block title %}{% endblock %}
+{% block head %}
+    <style type='text/css'>
+    #form1{
+    margin:10 5;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div>
+    <form id="form1" method="post" action="/jd/upload" enctype="multipart/form-data">
+        <input id="File" type="file" name="jd_file"/>  <!--后台代码中获取文件是通过form的name来标识的-->
+        <input type="submit" value="提交"/>
+    </form>
+    <table id="jd_details" style="width:100%">
+    {% if result %}
+    <tr>
+        <th>时间</th>
+        <th>业务类型</th>
+        <th>推广渠道</th>
+        <th>类型</th>
+        <th>金额</th>
+        <th>是否结算</th>
+    </tr>
+    {% for row in result %}
+   <tr>
+        <td> {{ row.promotion_date }} </td>
+        <td> {{ row.business_type }}</td>
+        <td> {{ row.promotion_channels }}</td>
+        <td> {{ row.type }}</td>
+        <td> {{ row.amount }}</td>
+        <td> {{ row.billing_status }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+</div>
+{% endblock %}

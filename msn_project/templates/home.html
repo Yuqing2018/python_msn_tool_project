@@ -1,0 +1,17 @@
+<!--{% from "macros.html" import nav_link with context %}-->
+{% extends  "layout.html" %}       # 继承base.html文件
+{% block title %}MSN TOOL{% endblock %}
+{% block head %}
+    {{  super()  }}        # 用于获取原有的信息
+    <style type='text/css'>
+    .important { color: #FFFFFF }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <ul class="nav-list">
+        {{ nav_link('show_all_duomai', '多麦效果明细') }}
+        {{ nav_link('show_all_taobao', '淘宝产品效果明细') }}
+        {{ nav_link('show_all_jd', '京东佣金明细') }}
+    </ul>
+{% endblock %}
